@@ -1,0 +1,57 @@
+import random
+
+# List of pharmacy questions and options
+questions = [
+    {
+        "question": "This drug is used to relieve pain and reduce fever. What is it?",
+        "options": ["Paracetamol", "Amoxicillin", "Lisinopril", "Insulin"],
+        "answer": "Paracetamol"
+    },
+    {
+        "question": "This antibiotic is commonly used to treat bacterial infections like strep throat.",
+        "options": ["Ibuprofen", "Metformin", "Amoxicillin", "Omeprazole"],
+        "answer": "Amoxicillin"
+    },
+    {
+        "question": "Which of the following is used for treating high blood pressure?",
+        "options": ["Lisinopril", "Cetirizine", "Metronidazole", "Paracetamol"],
+        "answer": "Lisinopril"
+    },
+    {
+        "question": "Which drug is most commonly used to control blood sugar in type 2 diabetes?",
+        "options": ["Insulin", "Aspirin", "Metformin", "Losartan"],
+        "answer": "Metformin"
+    },
+    {
+        "question": "Which drug is used to reduce stomach acid production?",
+        "options": ["Omeprazole", "Amlodipine", "Ibuprofen", "Simvastatin"],
+        "answer": "Omeprazole"
+    }
+]
+
+def play_game():
+    score = 0
+    random.shuffle(questions)
+
+    print("\n💊 WELCOME TO 'GUESS THE DRUG!' 💊")
+    print("Answer the pharmacy questions below. Good luck!\n")
+
+    for i, q in enumerate(questions):
+        print(f"Q{i+1}: {q['question']}")
+        for idx, option in enumerate(q['options'], 1):
+            print(f"  {idx}. {option}")
+
+        try:
+            choice = int(input("Enter the number of your choice: "))
+            if q['options'][choice - 1].lower() == q['answer'].lower():
+                print("✅ Correct!\n")
+                score += 1
+            else:
+                print(f"❌ Oops! The correct answer was: {q['answer']}\n")
+        except (ValueError, IndexError):
+            print(f"⚠️ Invalid input! The correct answer was: {q['answer']}\n")
+
+    print(f"🎉 Game Over! Your final score: {score}/{len(questions)}")
+
+if __name__ == "__main__":
+    play_game()
